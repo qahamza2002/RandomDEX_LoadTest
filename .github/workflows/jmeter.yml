@@ -1,0 +1,33 @@
+name: JMeter Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  jmeter-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up JMeter
+        run: |
+          wget https://downloads.apache.org//jmeter/binaries/apache-jmeter-5.5.tgz
+          tar -xzf apache-jmeter-5.5.tgz
+          echo "${{ github.workspace }}/apache-jmeter-5.5/bin" >> $GITHUB_PATH
+
+      - name: Run JMeter Test
+        run: |
+          jmeter -n -t ./tests/your_test_plan.jmx -l results.jtl -j jmeter.log
+
+      - name: Upload results
+        uses: actions/upload-artifact@v3
+        with:
+          name: jmeter-results
+          path: |
+            results.jtl
+            jmeter.log

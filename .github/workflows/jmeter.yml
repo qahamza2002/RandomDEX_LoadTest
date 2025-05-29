@@ -17,7 +17,7 @@ jobs:
       - name: Set up JMeter
         shell: powershell
         run: |
-          Invoke-WebRequest -Uri https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.5.zip -OutFile jmeter.zip
+          Invoke-WebRequest -Uri https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.5.zip -OutFile jmeter.zip
           Expand-Archive -Path jmeter.zip -DestinationPath .
           $env:PATH += ";${{ github.workspace }}\apache-jmeter-5.5\bin"
           Write-Host "JMeter path added to PATH"

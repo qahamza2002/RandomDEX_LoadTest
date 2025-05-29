@@ -25,4 +25,4 @@ jobs:
       - name: Run JMeter Test
         shell: powershell
         run: |
-          .\apache-jmeter-5.5\bin\jmeter.bat -n -t .\tests\Test Plan.jmx -l results.jtl -j jmeter.log
+          .\apache-jmeter-5.5\bin\jmeter.bat -n -t ".\tests\Test_Plan.jmx" -l results.jtl -j jmeter.log

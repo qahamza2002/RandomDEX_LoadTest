@@ -14,6 +14,12 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      - name: List files in repo
+        shell: powershell
+        run: |
+          Write-Host "Listing all files recursively:"
+          Get-ChildItem -Path . -File -Recurse | Sort-Object FullName | ForEach-Object { Write-Host $_.FullName }
+
       - name: Set up JMeter
         shell: powershell
         run: |
